@@ -1,22 +1,27 @@
 import React from "react"
+import _ from "lodash"
 
 let Button = (props) => {
 	return (
 		<>
-			<button>{props.num}</button>
+			<button
+				onClick={() => {
+					props.onClick(props.num)
+				}}
+			>
+				{props.num}
+			</button>
 		</>
 	)
 }
 
 export default function ButtonSolutionLength(props) {
+	const buttonRange = _.range(4, 10)
 	return (
 		<div>
-			<Button {...props}></Button>
-			<Button {...props}></Button>
-			<Button {...props}></Button>
-			<Button {...props}></Button>
-			<Button {...props}></Button>
-			<Button {...props}></Button>
+			{buttonRange.map((num) => {
+				return <Button {...props} key={num} num={num}></Button>
+			})}
 		</div>
 	)
 }
