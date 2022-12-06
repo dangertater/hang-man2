@@ -1,23 +1,25 @@
 import React, { useState } from "react"
-import ButtonSolutionLength from "./ButtonSolutionLength"
+import ButtonSolution from "./ButtonSolution"
+import _ from "lodash"
+
 function App() {
-	let [solutionWord, setSolutionWord] = useState(0)
+	let [solutionWord, setSolutionWord] = useState([])
 
 	return (
 		<>
-			{/* will have several buttons that all 'onClick' to setState of solution word */}
-			<div className="setSolutionWordLengthDiv">
-				<ButtonSolutionLength
+			{/*several buttons that all 'onClick' to setState of solution word */}
+			<div className="setSolutionWordDiv">
+				<ButtonSolution
 					solutionWord={solutionWord}
 					setSolutionWord={setSolutionWord}
-					onClick={(number) => {
-						setSolutionWord(number)
+					onClick={(arrayOfLetters) => {
+						setSolutionWord(arrayOfLetters)
 					}}
-				></ButtonSolutionLength>
+				></ButtonSolution>
+				<>{solutionWord}</>
 			</div>
-			test{solutionWord}
-			{/* will have a function that decides how many letters the solution word will have */}
-			<div className="solutionWordDiv">{/* <IndySolutionLetter /> */}</div>
+			{/* will have a function that decides which letters the solution word will have */}
+			<div className="solutionWordDiv"></div>
 			<div className="guessedLettersDiv">Guessed Letters will go here</div>
 			<div className="alphabetButtonDiv"></div>
 		</>
