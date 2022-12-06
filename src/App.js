@@ -16,12 +16,12 @@ function App() {
 						setSolutionWord(arrayOfLetters)
 					}}
 				></ButtonSolution>
-				<>{solutionWord}</>
+				<>the letters are {solutionWord.join("-")}</>
 			</div>
-			{/* will have a function that decides which letters the solution word will have */}
-			<div className="solutionWordDiv"></div>
 			<div className="guessedLettersDiv">Guessed Letters will go here</div>
-			<div className="alphabetButtonDiv"></div>
+			<div className="alphabetButtonDiv">
+				<GuessButton />
+			</div>
 		</>
 	)
 }
