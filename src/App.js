@@ -35,19 +35,21 @@ function App() {
 		"z",
 	])
 	// todo i need to figure otu the callback syntax to get the guessed letter out of the the notGuessedLettersState
+	//also wtf is going on with lodash, also how would you parse out a notGuessedLetters?
 	let userGuessed = (guessedLetter) => {
 		setGuessedLetters([...guessedLetters, guessedLetter])
-		setNotGuessedLetters((guessedLetter) => {
-			return notGuessedLetters_.reject(() => {})
+		setNotGuessedLetters((newNotGuessedLetters) => {
+			return newNotGuessedLetters.filter((ngl) => {
+				return ngl !== guessedLetter
+			})
 		})
-		//q4e two questions why is my setTimeout not working and then
-		// ----why is it console logging after the render, when its clearly below the setState a few lines up
-		setTimeout(console.log("guessedLetters", guessedLetters), 2000)
-
-		console.log("notGuessedLetters", notGuessedLetters)
+		setNotGuessedLetters(
+			notGuessedLetters.filter((ngl) => {
+				return ngl !== guessedLetter
+			})
+		)
 	}
 	let handleClickGuessButton = (guessedLetter) => {
-		console.log("guessed letter pressed", guessedLetter)
 		userGuessed(guessedLetter)
 	}
 
