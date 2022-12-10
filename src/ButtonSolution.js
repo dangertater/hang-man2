@@ -23,7 +23,7 @@ let Button = (props) => {
 					props.onClick(wordGenerator(props.num))
 				}}
 			>
-				{props.num}
+				{props.children}
 			</button>
 		</>
 	)
@@ -34,7 +34,11 @@ export default function ButtonSolution(props) {
 	return (
 		<div>
 			{buttonRange.map((num) => {
-				return <Button {...props} key={num} num={num}></Button>
+				return (
+					<Button {...props} key={num} num={num}>
+						{num}
+					</Button>
+				)
 			})}
 		</div>
 	)

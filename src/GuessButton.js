@@ -1,5 +1,20 @@
 import React from "react"
 
+let Button = (props) => {
+	return (
+		<button
+			onClick={(e) => {
+				props.handleClickGuessButton(props.mappedLetter)
+			}}
+			disabled={
+				props.guessedLetters.includes(props.mappedLetter) ? true : false
+			}
+		>
+			{props.mappedLetter}
+		</button>
+	)
+}
+
 export default function GuessButton(props) {
 	let alphabetArray = [
 		"a",
@@ -29,18 +44,15 @@ export default function GuessButton(props) {
 		"y",
 		"z",
 	]
-	let Button = (indyLetter) => {
-		return (
-			<button
-				onClick={(e) => {
-					props.handleClickGuessButton(indyLetter.mappedLetter)
-				}}
-			>
-				{indyLetter.mappedLetter}
-			</button>
-		)
-	}
+
 	return alphabetArray.map((mappedLetter) => {
-		return <Button key={mappedLetter} mappedLetter={mappedLetter}></Button>
+		return (
+			<Button
+				key={mappedLetter}
+				mappedLetter={mappedLetter}
+				guessedLetters={props.guessedLetters}
+				handleClickGuessButton={props.handleClickGuessButton}
+			></Button>
+		)
 	})
 }

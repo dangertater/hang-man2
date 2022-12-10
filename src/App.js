@@ -49,13 +49,21 @@ function App() {
 			})
 		)
 	}
+	let userWon = () => {
+		window.alert("you have won!")
+	}
+	let hasUserWon = (solutionWord, matchingLetters) => {
+		if (solutionWord.length - 1 === matchingLetters.length) {
+			userWon()
+		}
+	}
 
 	// need to look up how to check if each element in matchingLetters is ===solutionWord
 	// ----tricky part will be to disregard order of the letters
 	let checkAgainstSolution = (guessedLetter) => {
 		if (solutionWord.includes(guessedLetter)) {
 			setMatchingLetters([...matchingLetters, guessedLetter])
-			// hasUserWon(()=>{if (HERE)})
+			hasUserWon(solutionWord, matchingLetters)
 		}
 	}
 	let handleClickGuessButton = (guessedLetter) => {
@@ -82,12 +90,17 @@ function App() {
 						setSolutionWord(arrayOfLetters)
 					}}
 				></ButtonSolution>
-				<>the solution letters are {solutionWord.join("-")}</>
+				<>
+					the solution letters are <strong>{solutionWord.join("-")}</strong>
+				</>
 				<div>you've correctly guessed {matchingLetters}</div>
 			</div>
 			<div className="alphabetButtonDiv">
 				<div>guess letters by pressing below buttons</div>{" "}
-				<GuessButton handleClickGuessButton={handleClickGuessButton} />
+				<GuessButton
+					handleClickGuessButton={handleClickGuessButton}
+					guessedLetters={guessedLetters}
+				/>
 			</div>
 			<div>guessedLetters {guessedLetters}</div>
 			<div>notGuessedLetters {notGuessedLetters}</div>
