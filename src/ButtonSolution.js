@@ -1,5 +1,5 @@
 import React from "react"
-import _ from "lodash"
+import _, { uniq } from "lodash"
 
 let wordGenerator = (num) => {
 	return _.range(0, num)
@@ -10,10 +10,34 @@ let wordGenerator = (num) => {
 			return convertNumToLetter(num)
 		})
 }
-
+// let duplicateLetterCheck = (array) => {
+// 	if (new Set(array).size !== array.length) {
+// 		//TODO i believe useRef would be functional here
+// 		//----currently wordGenerator will be called with a hardcoded 12
+// 		//----instead of the number clicked by the user
+// 		return wordGenerator(12)
+// 	} else {
+// 		return array
+// 	}
+// }
+//TODO clean this up, make convertNumToLetter an inline function on 2nd map of wordGenerator
 let convertNumToLetter = (num) => {
 	return String.fromCharCode(num)
 }
+
+// let Button = (props) => {
+// 	return (
+// 		<>
+// 			<button
+// 				onClick={() => {
+// 					props.onClick(duplicateLetterCheck(wordGenerator(props.num)))
+// 				}}
+// 			>
+// 				{props.children}
+// 			</button>
+// 		</>
+// 	)
+// }
 
 let Button = (props) => {
 	return (

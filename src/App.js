@@ -58,8 +58,6 @@ function App() {
 		}
 	}
 
-	// need to look up how to check if each element in matchingLetters is ===solutionWord
-	// ----tricky part will be to disregard order of the letters
 	let checkAgainstSolution = (guessedLetter) => {
 		if (solutionWord.includes(guessedLetter)) {
 			setMatchingLetters([...matchingLetters, guessedLetter])
@@ -87,7 +85,9 @@ function App() {
 					solutionWord={solutionWord}
 					setSolutionWord={setSolutionWord}
 					onClick={(arrayOfLetters) => {
+						//PROBLEM arrayOfLetters is being returned as undefined
 						setSolutionWord(arrayOfLetters)
+						console.log(arrayOfLetters)
 					}}
 				></ButtonSolution>
 				<>
