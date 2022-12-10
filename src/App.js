@@ -87,7 +87,6 @@ function App() {
 					setSolutionWord={setSolutionWord}
 					onClick={(arrayOfLetters) => {
 						setSolutionWord(arrayOfLetters)
-						console.log(arrayOfLetters)
 					}}
 				></ButtonSolution>
 				<>
@@ -100,6 +99,7 @@ function App() {
 				<GuessButton
 					handleClickGuessButton={handleClickGuessButton}
 					guessedLetters={guessedLetters}
+					solutionWord={solutionWord}
 				/>
 			</div>
 			<div>guessedLetters {guessedLetters}</div>

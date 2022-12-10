@@ -1,5 +1,5 @@
 import React from "react"
-import _, { uniq } from "lodash"
+import _ from "lodash"
 
 let wordGenerator = (num) => {
 	return _.range(0, num)

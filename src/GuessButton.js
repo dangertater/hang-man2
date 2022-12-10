@@ -7,7 +7,9 @@ let Button = (props) => {
 				props.handleClickGuessButton(props.mappedLetter)
 			}}
 			disabled={
-				props.guessedLetters.includes(props.mappedLetter) ? true : false
+				props.disabled || props.guessedLetters.includes(props.mappedLetter)
+					? true
+					: false
 			}
 		>
 			{props.mappedLetter}
@@ -52,6 +54,8 @@ export default function GuessButton(props) {
 				mappedLetter={mappedLetter}
 				guessedLetters={props.guessedLetters}
 				handleClickGuessButton={props.handleClickGuessButton}
+				solutionWord={props.solutionWord}
+				disabled={!props.solutionWord.length}
 			></Button>
 		)
 	})
