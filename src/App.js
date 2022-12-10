@@ -51,6 +51,7 @@ function App() {
 	}
 	let userWon = () => {
 		window.alert("you have won!")
+		setSolutionWord([])
 	}
 	let hasUserWon = (solutionWord, matchingLetters) => {
 		if (solutionWord.length - 1 === matchingLetters.length) {
@@ -85,7 +86,6 @@ function App() {
 					solutionWord={solutionWord}
 					setSolutionWord={setSolutionWord}
 					onClick={(arrayOfLetters) => {
-						//PROBLEM arrayOfLetters is being returned as undefined
 						setSolutionWord(arrayOfLetters)
 						console.log(arrayOfLetters)
 					}}
