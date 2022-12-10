@@ -2,7 +2,6 @@ import React from "react"
 import _ from "lodash"
 
 let wordGenerator = (num) => {
-	console.log(num, _.range(0, num))
 	return _.range(0, num)
 		.map(() => {
 			return 97 + Math.floor(Math.random() * 26)

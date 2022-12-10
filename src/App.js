@@ -34,8 +34,8 @@ function App() {
 		"y",
 		"z",
 	])
-	// todo i need to figure otu the callback syntax to get the guessed letter out of the the notGuessedLettersState
-	//also wtf is going on with lodash, also how would you parse out a notGuessedLetters?
+	let [guessAttemptsRemaining, setGuessAttemptsRemaining] = useState(10)
+	let [matchingLetters, setMatchingLetters] = useState([])
 	let userGuessed = (guessedLetter) => {
 		setGuessedLetters([...guessedLetters, guessedLetter])
 		setNotGuessedLetters((newNotGuessedLetters) => {
@@ -49,14 +49,32 @@ function App() {
 			})
 		)
 	}
+
+	// need to look up how to check if each element in matchingLetters is ===solutionWord
+	// ----tricky part will be to disregard order of the letters
+	let checkAgainstSolution = (guessedLetter) => {
+		if (solutionWord.includes(guessedLetter)) {
+			setMatchingLetters([...matchingLetters, guessedLetter])
+			// hasUserWon(()=>{if (HERE)})
+		}
+	}
 	let handleClickGuessButton = (guessedLetter) => {
-		userGuessed(guessedLetter)
+		if (guessAttemptsRemaining > 0) {
+			userGuessed(guessedLetter)
+			setGuessAttemptsRemaining(() => {
+				return guessAttemptsRemaining - 1
+			})
+			checkAgainstSolution(guessedLetter)
+		} else {
+			window.alert("you lost you fuck")
+		}
 	}
 
 	return (
 		<>
 			{/*several buttons that all 'onClick' to setState of solution word */}
 			<div className="setSolutionWordDiv">
+				<div>Select how many letters you want the solution to be</div>
 				<ButtonSolution
 					solutionWord={solutionWord}
 					setSolutionWord={setSolutionWord}
@@ -65,13 +83,15 @@ function App() {
 					}}
 				></ButtonSolution>
 				<>the solution letters are {solutionWord.join("-")}</>
+				<div>you've correctly guessed {matchingLetters}</div>
 			</div>
-			<div className="guessedLettersDiv">Guessed Letters will go here</div>
 			<div className="alphabetButtonDiv">
+				<div>guess letters by pressing below buttons</div>{" "}
 				<GuessButton handleClickGuessButton={handleClickGuessButton} />
 			</div>
 			<div>guessedLetters {guessedLetters}</div>
 			<div>notGuessedLetters {notGuessedLetters}</div>
+			<div>guess attempts remaining {guessAttemptsRemaining}</div>
 		</>
 	)
 }
