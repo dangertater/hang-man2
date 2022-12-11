@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import ButtonSolution from "./ButtonSolution"
 import _ from "lodash"
 import GuessButton from "./GuessButton"
+import HangManGuy from "./hangManGuy"
 
 function App() {
 	let [solutionWord, setSolutionWord] = useState([])
@@ -95,7 +96,7 @@ function App() {
 				<div>you've correctly guessed {matchingLetters}</div>
 			</div>
 			<div className="alphabetButtonDiv">
-				<div>guess letters by pressing below buttons</div>{" "}
+				<div>guess letters by pressing below buttons</div>
 				<GuessButton
 					handleClickGuessButton={handleClickGuessButton}
 					guessedLetters={guessedLetters}
@@ -105,6 +106,17 @@ function App() {
 			<div>guessedLetters {guessedLetters}</div>
 			<div>notGuessedLetters {notGuessedLetters}</div>
 			<div>guess attempts remaining {guessAttemptsRemaining}</div>
+			<HangManGuy
+				renderBody={guessedLetters.length > 0}
+				renderRightEye={guessedLetters.length > 1}
+				renderHead={guessedLetters.length > 2}
+				renderLeftEye={guessedLetters.length > 3}
+				renderRightArm={guessedLetters.length > 4}
+				renderLeftArm={guessedLetters.length > 5}
+				renderRightLeg={guessedLetters.length > 6}
+				renderLeftLeg={guessedLetters.length > 7}
+				renderFrown={guessedLetters.length > 8}
+			></HangManGuy>
 		</>
 	)
 }
