@@ -38,10 +38,15 @@ function App() {
 		"y",
 		"z",
 	])
-	let [guessAttemptsRemaining, setGuessAttemptsRemaining] = useState(9)
+	// change below default state back to 9
+	let [guessAttemptsRemaining, setGuessAttemptsRemaining] = useState(0)
 	let [matchingLetters, setMatchingLetters] = useState([])
 	let [incorrectGuesses, setIncorrectGuesses] = useState([])
-	let [memoryGameActive, setMemoryGameActive] = useState(null)
+	let [memoryGameActive, setMemoryGameActive] = useState(true)
+	let [whiteToBlue, setWhiteToBlue] = useState("white")
+	let [whiteToRed, setWhiteToRed] = useState("white")
+	let [whiteToGreen, setWhiteToGreen] = useState("white")
+	let [whiteToYellow, setWhiteToYellow] = useState("white")
 	let userGuessed = (guessedLetter) => {
 		setGuessedLetters([...guessedLetters, guessedLetter])
 		//the comented out below code had been chillin i think doing nothing, delete if as time goes on no errors occur
@@ -181,11 +186,18 @@ function App() {
 			</HangManGuyDead>
 			<MuiButton
 				disabled={guessAttemptsRemaining > 0 ? true : false}
+				// why in the fuck would the below line of code cause a infinite loop prior to clicking even?
 				// onClick={setMemoryGameActive(true)}
+				//will need to change default of state to false
 			>
 				oh dang I want another try...
 			</MuiButton>
-			<Memory memoryGameActive={memoryGameActive}></Memory>
+			{/* if memory games works like this add whiteto...colors */}
+			<Memory
+				memoryGameActive={memoryGameActive}
+				whiteToBlue={whiteToBlue}
+				setWhiteToBlue={setWhiteToBlue}
+			></Memory>
 		</>
 	)
 }
