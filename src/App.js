@@ -4,6 +4,8 @@ import _ from "lodash"
 import GuessButton from "./GuessButton"
 import HangManGuy from "./hangManGuy"
 import HangManGuyDead from "./hangManGuyDead"
+import Memory from "./Memory"
+import MuiButton from "@mui/material/Button"
 
 function App() {
 	let [solutionWord, setSolutionWord] = useState([])
@@ -39,6 +41,7 @@ function App() {
 	let [guessAttemptsRemaining, setGuessAttemptsRemaining] = useState(9)
 	let [matchingLetters, setMatchingLetters] = useState([])
 	let [incorrectGuesses, setIncorrectGuesses] = useState([])
+	let [memoryGameActive, setMemoryGameActive] = useState(null)
 	let userGuessed = (guessedLetter) => {
 		setGuessedLetters([...guessedLetters, guessedLetter])
 		//the comented out below code had been chillin i think doing nothing, delete if as time goes on no errors occur
@@ -57,6 +60,13 @@ function App() {
 			setGuessAttemptsRemaining(() => {
 				return guessAttemptsRemaining - 1
 			})
+		}
+	}
+	let buttonGreenOrRed = (trueOrNot) => {
+		if (trueOrNot) {
+			return "error"
+		} else {
+			return "success"
 		}
 	}
 	let userWon = () => {
@@ -128,7 +138,8 @@ function App() {
 					}}
 				></ButtonSolution>
 				<>
-					the solution letters are <strong>{solutionWord.join("-")}</strong>
+					solution letters are
+					<strong>{solutionWord.join("-")}</strong>
 				</>
 				<div>
 					you've correctly guessed <strong>{matchingLetters.join("-")}</strong>
@@ -140,6 +151,7 @@ function App() {
 					handleClickGuessButton={handleClickGuessButton}
 					guessedLetters={guessedLetters}
 					solutionWord={solutionWord}
+					buttonGreenOrRed={buttonGreenOrRed}
 				/>
 			</div>
 			<div>
@@ -164,11 +176,20 @@ function App() {
 				renderRightLeg={incorrectGuesses.length > 6}
 				renderLeftLeg={incorrectGuesses.length > 7}
 			></HangManGuy>
-			<HangManGuyDead
-				guessAttemptsRemaining={guessAttemptsRemaining}
-			></HangManGuyDead>
+			<HangManGuyDead guessAttemptsRemaining={guessAttemptsRemaining}>
+				basdfasdfasdf
+			</HangManGuyDead>
+			<MuiButton
+				disabled={guessAttemptsRemaining > 0 ? true : false}
+				// onClick={setMemoryGameActive(true)}
+			>
+				oh dang I want another try...
+			</MuiButton>
+			<Memory memoryGameActive={memoryGameActive}></Memory>
 		</>
 	)
 }
 
 export default App
+
+//animate presence needs to stay always rendered for anyting under it to always animate

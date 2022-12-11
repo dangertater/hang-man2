@@ -1,5 +1,6 @@
 import React from "react"
 import _ from "lodash"
+import MuiButton from "@mui/material/Button"
 
 let wordGenerator = (num) => {
 	return _.range(0, num)
@@ -27,7 +28,8 @@ let convertNumToLetter = (num) => {
 let Button = (props) => {
 	return (
 		<>
-			<button
+			<MuiButton
+				variant="outlined"
 				onClick={() => {
 					props.onClick(
 						duplicateLetterCheck(wordGenerator(props.num), props.num)
@@ -35,7 +37,7 @@ let Button = (props) => {
 				}}
 			>
 				{props.children}
-			</button>
+			</MuiButton>
 		</>
 	)
 }

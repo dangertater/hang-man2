@@ -1,8 +1,10 @@
 import React from "react"
+import MuiButton from "@mui/material/Button"
 
 let Button = (props) => {
 	return (
-		<button
+		<MuiButton
+			variant="outlined"
 			onClick={(e) => {
 				props.handleClickGuessButton(props.mappedLetter)
 			}}
@@ -11,9 +13,10 @@ let Button = (props) => {
 					? true
 					: false
 			}
+			color={props.buttonGreenOrRed(props.disabled)}
 		>
 			{props.mappedLetter}
-		</button>
+		</MuiButton>
 	)
 }
 
@@ -56,6 +59,7 @@ export default function GuessButton(props) {
 				handleClickGuessButton={props.handleClickGuessButton}
 				solutionWord={props.solutionWord}
 				disabled={!props.solutionWord.length}
+				buttonGreenOrRed={props.buttonGreenOrRed}
 			></Button>
 		)
 	})
