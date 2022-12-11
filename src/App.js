@@ -3,6 +3,7 @@ import ButtonSolution from "./ButtonSolution"
 import _ from "lodash"
 import GuessButton from "./GuessButton"
 import HangManGuy from "./hangManGuy"
+import HangManGuyDead from "./hangManGuyDead"
 
 function App() {
 	let [solutionWord, setSolutionWord] = useState([])
@@ -35,20 +36,28 @@ function App() {
 		"y",
 		"z",
 	])
-	let [guessAttemptsRemaining, setGuessAttemptsRemaining] = useState(10)
+	let [guessAttemptsRemaining, setGuessAttemptsRemaining] = useState(9)
 	let [matchingLetters, setMatchingLetters] = useState([])
+	let [incorrectGuesses, setIncorrectGuesses] = useState([])
 	let userGuessed = (guessedLetter) => {
 		setGuessedLetters([...guessedLetters, guessedLetter])
-		setNotGuessedLetters((newNotGuessedLetters) => {
-			return newNotGuessedLetters.filter((ngl) => {
-				return ngl !== guessedLetter
-			})
-		})
+		//the comented out below code had been chillin i think doing nothing, delete if as time goes on no errors occur
+		// setNotGuessedLetters((newNotGuessedLetters) => {
+		// 	return newNotGuessedLetters.filter((ngl) => {
+		// 		return ngl !== guessedLetter
+		// 	})
+		// })
 		setNotGuessedLetters(
 			notGuessedLetters.filter((ngl) => {
 				return ngl !== guessedLetter
 			})
 		)
+		if (!solutionWord.includes(guessedLetter)) {
+			setIncorrectGuesses([...incorrectGuesses, guessedLetter])
+			setGuessAttemptsRemaining(() => {
+				return guessAttemptsRemaining - 1
+			})
+		}
 	}
 	let userWon = () => {
 		window.alert("you have won!")
@@ -69,9 +78,6 @@ function App() {
 	let handleClickGuessButton = (guessedLetter) => {
 		if (guessAttemptsRemaining > 0) {
 			userGuessed(guessedLetter)
-			setGuessAttemptsRemaining(() => {
-				return guessAttemptsRemaining - 1
-			})
 			checkAgainstSolution(guessedLetter)
 		} else {
 			window.alert("you lost you fuck")
@@ -88,12 +94,19 @@ function App() {
 					setSolutionWord={setSolutionWord}
 					onClick={(arrayOfLetters) => {
 						setSolutionWord(arrayOfLetters)
+						setGuessedLetters([])
+						setNotGuessedLetters([])
+						setGuessAttemptsRemaining(9)
+						setMatchingLetters([])
+						setIncorrectGuesses([])
 					}}
 				></ButtonSolution>
 				<>
 					the solution letters are <strong>{solutionWord.join("-")}</strong>
 				</>
-				<div>you've correctly guessed {matchingLetters}</div>
+				<div>
+					you've correctly guessed <strong>{matchingLetters.join("-")}</strong>
+				</div>
 			</div>
 			<div className="alphabetButtonDiv">
 				<div>guess letters by pressing below buttons</div>
@@ -103,20 +116,30 @@ function App() {
 					solutionWord={solutionWord}
 				/>
 			</div>
-			<div>guessedLetters {guessedLetters}</div>
-			<div>notGuessedLetters {notGuessedLetters}</div>
+			<div>
+				guessedLetters <strong>{guessedLetters.join("-")}</strong>
+			</div>
+			<div>
+				notGuessedLetters <strong>{notGuessedLetters.join("-")}</strong>
+			</div>
 			<div>guess attempts remaining {guessAttemptsRemaining}</div>
+			<div>
+				incorrectGuesses===<strong>{incorrectGuesses.join("-")}</strong>
+			</div>
 			<HangManGuy
-				renderBody={guessedLetters.length > 0}
-				renderRightEye={guessedLetters.length > 1}
-				renderHead={guessedLetters.length > 2}
-				renderLeftEye={guessedLetters.length > 3}
-				renderRightArm={guessedLetters.length > 4}
-				renderLeftArm={guessedLetters.length > 5}
-				renderRightLeg={guessedLetters.length > 6}
-				renderLeftLeg={guessedLetters.length > 7}
-				renderFrown={guessedLetters.length > 8}
+				guessAttemptsRemaining={guessAttemptsRemaining}
+				renderBody={incorrectGuesses.length > 0}
+				renderRightEye={incorrectGuesses.length > 1}
+				renderHead={incorrectGuesses.length > 2}
+				renderLeftEye={incorrectGuesses.length > 3}
+				renderRightArm={incorrectGuesses.length > 4}
+				renderLeftArm={incorrectGuesses.length > 5}
+				renderRightLeg={incorrectGuesses.length > 6}
+				renderLeftLeg={incorrectGuesses.length > 7}
 			></HangManGuy>
+			<HangManGuyDead
+				guessAttemptsRemaining={guessAttemptsRemaining}
+			></HangManGuyDead>
 		</>
 	)
 }

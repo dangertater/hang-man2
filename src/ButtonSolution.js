@@ -10,14 +10,15 @@ let wordGenerator = (num) => {
 			return convertNumToLetter(num)
 		})
 }
+
 let duplicateLetterCheck = (array, num) => {
-	// q4e idk what this 'new Set' is doing down below?
 	if (new Set(array).size !== array.length) {
 		return duplicateLetterCheck(wordGenerator(num), num)
 	} else {
 		return array
 	}
 }
+
 //TODO clean this up, make convertNumToLetter an inline function on 2nd map of wordGenerator
 let convertNumToLetter = (num) => {
 	return String.fromCharCode(num)

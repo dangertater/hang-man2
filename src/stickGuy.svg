@@ -2,13 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="57.903778mm"
-   height="127.7552mm"
-   viewBox="0 0 57.903778 127.7552"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
    sodipodi:docname="stickGuy.svg"
+   inkscape:export-filename="stickGuy.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,10 +28,10 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.914906"
-     inkscape:cx="173.24184"
-     inkscape:cy="566.72488"
+     inkscape:cx="175.42786"
+     inkscape:cy="567.27139"
      inkscape:window-width="1720"
-     inkscape:window-height="1387"
+     inkscape:window-height="444"
      inkscape:window-x="1720"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
@@ -38,8 +41,7 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-72.08391,-44.324732)">
+     id="layer1">
     <ellipse
        style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
        id="path162"
