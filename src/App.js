@@ -79,13 +79,12 @@ function App() {
 		if (guessAttemptsRemaining > 0) {
 			userGuessed(guessedLetter)
 			checkAgainstSolution(guessedLetter)
-		} else {
-			window.alert("you lost you fuck")
 		}
 	}
 
 	return (
 		<>
+			<h1>Hangman! Except its just jumbled letters because heck</h1>
 			{/*several buttons that all 'onClick' to setState of solution word */}
 			<div className="setSolutionWordDiv">
 				<div>Select how many letters you want the solution to be</div>
@@ -95,7 +94,34 @@ function App() {
 					onClick={(arrayOfLetters) => {
 						setSolutionWord(arrayOfLetters)
 						setGuessedLetters([])
-						setNotGuessedLetters([])
+						setNotGuessedLetters([
+							"a",
+							"b",
+							"c",
+							"d",
+							"e",
+							"f",
+							"g",
+							"h",
+							"i",
+							"j",
+							"k",
+							"l",
+							"m",
+							"n",
+							"o",
+							"p",
+							"q",
+							"r",
+							"s",
+							"t",
+							"u",
+							"v",
+							"w",
+							"x",
+							"y",
+							"z",
+						])
 						setGuessAttemptsRemaining(9)
 						setMatchingLetters([])
 						setIncorrectGuesses([])
@@ -124,7 +150,8 @@ function App() {
 			</div>
 			<div>guess attempts remaining {guessAttemptsRemaining}</div>
 			<div>
-				incorrectGuesses===<strong>{incorrectGuesses.join("-")}</strong>
+				you have incorrectly guessed
+				<strong>{incorrectGuesses.join("-")}</strong>
 			</div>
 			<HangManGuy
 				guessAttemptsRemaining={guessAttemptsRemaining}
