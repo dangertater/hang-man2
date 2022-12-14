@@ -16,7 +16,7 @@ function HangManGuy(props) {
 					width="218.849"
 					height="482.854"
 					version="1.1"
-					viewBox="0 0 57.904 127.755"
+					// viewBox="100 10 100 100"
 				>
 					<g
 						fill="#000"

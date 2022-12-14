@@ -101,6 +101,7 @@ function App() {
 	let HangManGuyDiv = styled("div")`
 		background-color: darkgray;
 		height: auto;
+		margin: 0 auto;
 	`
 	return (
 		<>
