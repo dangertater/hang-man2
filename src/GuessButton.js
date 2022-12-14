@@ -4,7 +4,7 @@ import MuiButton from "@mui/material/Button"
 let Button = (props) => {
 	return (
 		<MuiButton
-			variant="outlined"
+			variant="contained"
 			onClick={(e) => {
 				props.handleClickGuessButton(props.mappedLetter)
 			}}

@@ -29,7 +29,7 @@ let Button = (props) => {
 	return (
 		<>
 			<MuiButton
-				variant="outlined"
+				variant="contained"
 				onClick={() => {
 					props.onClick(
 						duplicateLetterCheck(wordGenerator(props.num), props.num)
